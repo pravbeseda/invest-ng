@@ -1,14 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  selector: 'app-portfolio-list',
+  templateUrl: './portfolio-list.page.html',
+  styleUrls: ['./portfolio-list.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarComponent implements OnInit {
-
-  dropdownMenu = false;
+export class PortfolioListPage implements OnInit {
 
   constructor() { }
 
