@@ -2,3 +2,19 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
+
+.page-wrapper {
+  @apply max-w-7xl mx-auto px-2 sm:px-6 lg:px-8;
+}
+
+h1 {
+  @apply text-xl font-semibold font-medium text-gray-700 text-center;
+}
+
+.btn {
+  @apply bg-gray-300 hover:bg-gray-200 p-2;
+}
+
+.btn-green {
+  @apply bg-green-300 hover:bg-green-200;
+}
