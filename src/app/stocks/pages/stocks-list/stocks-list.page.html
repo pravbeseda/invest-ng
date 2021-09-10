@@ -1,3 +1,7 @@
 <h1>Бумаги</h1>
 
-<button class="btn btn-green">Добавить</button>
+<button class="btn btn-green" (click)="openStockModal()">Добавить</button>
+
+<app-modal [opened]="openedModal" (close)="closeModal()">
+  <app-stock-modal></app-stock-modal>
+</app-modal>

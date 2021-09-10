@@ -7,10 +7,20 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StocksListPage implements OnInit {
+  openedModal = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openStockModal() {
+    this.openedModal = true;
+    console.log('!!!');
+  }
+
+  closeModal() {
+    this.openedModal = false;
   }
 
 }

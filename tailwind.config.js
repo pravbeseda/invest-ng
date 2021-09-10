@@ -12,10 +12,14 @@ module.exports = {
     },
     darkMode: false, // or 'media' or 'class'
     theme: {
-      extend: {},
+      extend: {
+        transformOrigin: {
+          "0": "0%",
+        },
+      },
     },
     variants: {
-      extend: {},
+      extend: {borderColor: ["responsive", "hover", "focus", "focus-within"]},
     },
     plugins: [],
 };

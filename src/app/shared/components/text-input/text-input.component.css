@@ -1,0 +1,7 @@
+::ng-deep input {
+  @apply block w-full appearance-none focus:outline-none bg-transparent;
+}
+::ng-deep label {
+  @apply absolute top-0 duration-300 origin-0 cursor-text;
+}
+

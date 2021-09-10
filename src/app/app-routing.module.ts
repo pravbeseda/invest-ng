@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'statistics',
     loadChildren: () => import('./statistics/statistics.module').then(m => m.StatisticsModule)
   },
+  {
+    path: '**',
+    redirectTo: 'portfolio'
+  }
 ];
 
 @NgModule({
