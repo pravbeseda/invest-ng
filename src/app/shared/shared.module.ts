@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { NavbarModule } from "./navbar/navbar.module";
 import { ModalComponent } from './components/modal/modal.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
-const SHARED_MODULES = [ CommonModule, NavbarModule ];
+const SHARED_MODULES = [ CommonModule, NavbarModule, ReactiveFormsModule, HttpClientModule ];
 const SHARED_COMPONENTS = [ ModalComponent, TextInputComponent ];
 
 @NgModule({

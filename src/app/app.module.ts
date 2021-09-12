@@ -3,7 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from "./shared/shared.module";
+import { SharedModule } from './shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { CoreModule } from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -12,9 +15,11 @@ import { SharedModule } from "./shared/shared.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CoreModule,
+    ToastrModule.forRoot(),
+    NoopAnimationsModule,
     SharedModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

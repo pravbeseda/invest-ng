@@ -1,4 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { StocksService } from '../../services/stocks.service';
+import {IntentData} from "../../../../models/common";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-portfolio-list',
@@ -9,18 +12,24 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 export class StocksListPage implements OnInit {
   openedModal = false;
 
-  constructor() { }
+  constructor(private stocksService: StocksService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
   openStockModal() {
     this.openedModal = true;
-    console.log('!!!');
   }
 
   closeModal() {
     this.openedModal = false;
+  }
+
+  loadStock(intent: IntentData<string>) {
+    this.stocksService.getStock(intent.data).subscribe(r => {
+      intent.onSuccess(r)
+      this.toastr.success('Done!');
+    });
   }
 
 }

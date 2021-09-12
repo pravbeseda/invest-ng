@@ -3,6 +3,10 @@
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
 
+*:disabled {
+  pointer-events: none;
+}
+
 .page-wrapper {
   @apply max-w-7xl mx-auto px-2 sm:px-6 lg:px-8;
 }
@@ -12,11 +16,19 @@ h1 {
 }
 
 .btn {
-  @apply bg-gray-300 hover:bg-gray-200 p-2;
+  @apply bg-gray-300 hover:bg-gray-200 p-2 my-auto;
 }
 
 .btn-green {
   @apply bg-green-300 hover:bg-green-200;
+}
+
+.btn-blue {
+  @apply bg-blue-300 hover:bg-blue-200;
+}
+
+.btn:disabled {
+  @apply opacity-50;
 }
 
 input:focus-within ~ label,
