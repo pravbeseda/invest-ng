@@ -1,0 +1,41 @@
+<div [formGroup]="form">
+
+  <app-text-input class="mb-3">
+    <input id="name" type="text" formControlName="name" placeholder=" " />
+    <label for="name">Название</label>
+  </app-text-input>
+
+  <div class="flex mb-3">
+    <app-text-input class="flex-1 mr-3">
+      <input id="type" type="text" formControlName="type" placeholder=" " />
+      <label for="type">Тип</label>
+    </app-text-input>
+
+    <app-text-input class="flex-1 mr-3">
+      <input id="ticker" type="text" formControlName="ticker" placeholder=" " />
+      <label for="ticker">Тикер</label>
+    </app-text-input>
+
+    <app-text-input class="flex-1 mr-3">
+      <input id="lastPrice" type="text" formControlName="lastPrice" placeholder=" " />
+      <label for="lastPrice">Цена</label>
+    </app-text-input>
+
+    <app-text-input class="flex-1 mr-3">
+      <input id="currency" type="text" formControlName="currency" placeholder=" " />
+      <label for="currency">Валюта</label>
+    </app-text-input>
+  </div>
+
+  <div class="flex mb-3">
+    <app-text-input class="flex-1 mr-3">
+      <input id="figi" type="text" formControlName="figi" placeholder=" " />
+      <label for="figi">Figi</label>
+    </app-text-input>
+    <app-text-input class="flex-1 mr-3">
+      <input id="isin" type="text" formControlName="isin" placeholder=" " />
+      <label for="isin">Isin</label>
+    </app-text-input>
+  </div>
+</div>
+

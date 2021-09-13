@@ -1,8 +1,8 @@
 import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
-import {IntentData} from '../../../../models/common';
+import {IntentData} from '@models/common';
 import {Subject} from "rxjs";
-import {StockItem} from "../../../../models/stocks";
+import {StockItem} from "@models/stocks";
 
 @Component({
   selector: 'app-stock-modal',
@@ -16,7 +16,7 @@ export class StockModalComponent implements OnInit {
 
   readonly ticker = new FormControl(null, Validators.required);
 
-  readonly result$ = new Subject<StockItem>()
+  readonly searchResult$ = new Subject<StockItem>()
 
   constructor() { }
 
@@ -31,7 +31,7 @@ export class StockModalComponent implements OnInit {
       data: this.ticker.value?.toUpperCase(),
       onSuccess: r => {
         console.log({ r });
-        this.result$.next(r);
+        this.searchResult$.next(r);
       }
     }
     this.loadStock.emit(intent);

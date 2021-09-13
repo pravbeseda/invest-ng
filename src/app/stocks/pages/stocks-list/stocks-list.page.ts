@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { StocksService } from '../../services/stocks.service';
-import {IntentData} from "../../../../models/common";
+import {IntentData} from "@models/common";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
