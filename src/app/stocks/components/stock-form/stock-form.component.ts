@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import {Component, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core';
 import { StockItem } from '@models/stocks';
 import { FormBuilder } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./stock-form.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StockFormComponent implements OnInit {
+export class StockFormComponent {
   @Input()
   set stock(stock: StockItem) {
     if (stock) {
@@ -18,7 +18,11 @@ export class StockFormComponent implements OnInit {
     }
   }
 
+  @Output()
+  readonly onSave = new EventEmitter<StockItem>();
+
   readonly form = this.fb.group({
+    id: null,
     ticker: null,
     name: null,
     currency: null,
@@ -30,7 +34,7 @@ export class StockFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
+  save() {
+    this.onSave.emit(this.form.value);
   }
-
 }

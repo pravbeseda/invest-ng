@@ -7,6 +7,8 @@
   (close)="closeModal()"
 >
   <app-stock-modal
+    [opened]="openedModal"
     (loadStock)="loadStock($event)"
+    (saveStock)="saveStock($event)"
   ></app-stock-modal>
 </app-modal>

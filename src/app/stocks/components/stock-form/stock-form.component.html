@@ -1,11 +1,11 @@
-<div [formGroup]="form">
+<form [formGroup]="form">
 
   <app-text-input class="mb-3">
     <input id="name" type="text" formControlName="name" placeholder=" " />
     <label for="name">Название</label>
   </app-text-input>
 
-  <div class="flex mb-3">
+  <div class="flex mt-5">
     <app-text-input class="flex-1 mr-3">
       <input id="type" type="text" formControlName="type" placeholder=" " />
       <label for="type">Тип</label>
@@ -27,7 +27,7 @@
     </app-text-input>
   </div>
 
-  <div class="flex mb-3">
+  <div class="flex mt-5">
     <app-text-input class="flex-1 mr-3">
       <input id="figi" type="text" formControlName="figi" placeholder=" " />
       <label for="figi">Figi</label>
@@ -37,5 +37,7 @@
       <label for="isin">Isin</label>
     </app-text-input>
   </div>
-</div>
+
+  <button class="btn btn-green mt-6 mx-auto" [disabled]="form.invalid" (click)="save()">Сохранить</button>
+</form>
 

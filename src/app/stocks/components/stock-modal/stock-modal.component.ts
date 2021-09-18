@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
+import {Component, ChangeDetectionStrategy, Output, EventEmitter, Input} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {IntentData} from '@models/common';
 import {Subject} from "rxjs";
@@ -10,31 +10,40 @@ import {StockItem} from "@models/stocks";
   styleUrls: ['./stock-modal.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StockModalComponent implements OnInit {
+export class StockModalComponent {
+  @Input()
+  set opened(opened: boolean) {
+    // При закрытии модалки очищаем форму
+    if (!opened) {
+      this.ticker.reset();
+      this.stock$.next(null);
+    }
+  }
+
   @Output()
   readonly loadStock = new EventEmitter<IntentData<string>>();
 
+  @Output()
+  readonly saveStock = new EventEmitter<StockItem>();
+
   readonly ticker = new FormControl(null, Validators.required);
-
-  readonly searchResult$ = new Subject<StockItem>()
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  readonly stock$ = new Subject<StockItem | null>();
 
   search() {
     if (this.ticker.invalid) {
-      return
+      return;
     }
     const intent: IntentData<string> = {
       data: this.ticker.value?.toUpperCase(),
       onSuccess: r => {
-        console.log({ r });
-        this.searchResult$.next(r);
+        this.stock$.next(r);
       }
     }
     this.loadStock.emit(intent);
+  }
+
+  save(stock: StockItem) {
+    this.saveStock.emit(stock);
   }
 
 }

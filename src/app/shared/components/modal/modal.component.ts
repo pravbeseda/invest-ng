@@ -1,6 +1,6 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input, HostBinding, Output, EventEmitter} from '@angular/core';
 
-// https://tailwindcomponents.com/component/very-simple-modal
+// Прототип: https://tailwindcomponents.com/component/very-simple-modal
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',

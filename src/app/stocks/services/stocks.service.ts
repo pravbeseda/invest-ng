@@ -12,4 +12,8 @@ export class StocksService {
     return this.apiStocksService.getStock(ticker);
   }
 
+  addStock(stock: StockItem): Observable<void> {
+    return this.apiStocksService.addStock(stock);
+  }
+
 }
