@@ -3,3 +3,8 @@ export type Intent<T> = T & {
 };
 
 export type IntentData<T> = Intent<{ data: T }>;
+
+export type Pageable<T> = {
+  content: T[],
+  totalCount: number;
+}

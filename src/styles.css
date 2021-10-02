@@ -16,15 +16,15 @@ h1 {
 }
 
 .btn {
-  @apply bg-gray-300 hover:bg-gray-200 p-2;
+  @apply bg-gray-200 hover:bg-gray-300 p-2;
 }
 
 .btn-green {
-  @apply bg-green-300 hover:bg-green-200;
+  @apply bg-green-200 hover:bg-green-300;
 }
 
 .btn-blue {
-  @apply bg-blue-300 hover:bg-blue-200;
+  @apply bg-blue-200 hover:bg-blue-300;
 }
 
 .btn:disabled {

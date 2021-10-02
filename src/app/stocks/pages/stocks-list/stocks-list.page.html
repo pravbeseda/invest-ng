@@ -2,6 +2,10 @@
 
 <button class="btn btn-green" (click)="openStockModal()">Добавить</button>
 
+<div *ngFor="let stock of stocks$ | async; trackBy: trackById">
+  {{ stock.name }} - {{ stock.lastPrice | currency }}
+</div>
+
 <app-modal
   [opened]="openedModal"
   (close)="closeModal()"
