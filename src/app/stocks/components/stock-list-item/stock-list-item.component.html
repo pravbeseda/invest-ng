@@ -1,0 +1,4 @@
+<div class="border p-3 m-2 rounded w-64 flex" *ngIf="stock">
+  <div class="flex-1">{{ stock.name }}</div>
+  <div class="ml-3">{{ stock.lastPrice | currency : stock.currency : 'symbol-narrow' : '' : 'ru' }}</div>
+</div>
