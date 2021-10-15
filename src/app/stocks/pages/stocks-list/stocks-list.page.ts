@@ -47,6 +47,8 @@ export class StocksListPage implements OnInit {
   saveStock(stock: StockItem) {
     this.stocksService.addStock(stock).subscribe(() => {
       this.toastr.success('Бумага добавлена успешно');
+      this.getStocks();
+      this.closeModal();
     });
   }
 
