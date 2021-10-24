@@ -6,9 +6,10 @@ import { SharedModule } from '../shared/shared.module';
 import { StocksService } from './services/stocks.service';
 import { StockFormComponent } from './components/stock-form/stock-form.component';
 import { StockListItemComponent } from './components/stock-list-item/stock-list-item.component';
+import { StockItemComponent } from './pages/stock-edit/stock-item.component';
 
 @NgModule({
-  declarations: [StocksListPage, StockModalComponent, StockFormComponent, StockListItemComponent],
+  declarations: [StocksListPage, StockModalComponent, StockFormComponent, StockListItemComponent, StockItemComponent],
   imports: [
     SharedModule,
     StocksRoutingModule,

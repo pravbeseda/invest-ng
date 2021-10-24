@@ -1,0 +1,7 @@
+<div class="pt-4 w-1/3">
+  <app-stock-form *ngIf="stock$ | async as stock"
+    [stock]="stock"
+    (save)="save($event)"
+    (cancel)="cancel()"
+  ></app-stock-form>
+</div>

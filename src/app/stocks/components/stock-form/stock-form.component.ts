@@ -19,7 +19,10 @@ export class StockFormComponent {
   }
 
   @Output()
-  readonly onSave = new EventEmitter<StockItem>();
+  readonly save = new EventEmitter<StockItem>();
+
+  @Output()
+  readonly cancel = new EventEmitter<void>();
 
   readonly form = this.fb.group({
     id: null,
@@ -33,8 +36,4 @@ export class StockFormComponent {
   });
 
   constructor(private fb: FormBuilder) { }
-
-  save() {
-    this.onSave.emit(this.form.value);
-  }
 }

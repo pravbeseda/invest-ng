@@ -38,6 +38,9 @@
     </app-text-input>
   </div>
 
-  <button class="btn btn-green mt-6 mx-auto" [disabled]="form.invalid" (click)="save()">Сохранить</button>
+  <div class="mt-6">
+    <button class="btn btn-gray" (click)="cancel.emit()">Отмена</button>
+    <button class="btn btn-green" [disabled]="form.invalid" (click)="save.emit(form.value)">Сохранить</button>
+  </div>
 </form>
 

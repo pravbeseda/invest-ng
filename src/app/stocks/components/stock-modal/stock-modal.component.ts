@@ -26,6 +26,9 @@ export class StockModalComponent {
   @Output()
   readonly saveStock = new EventEmitter<StockItem>();
 
+  @Output()
+  readonly close = new EventEmitter<void>();
+
   readonly ticker = new FormControl(null, Validators.required);
   readonly stock$ = new Subject<StockItem | null>();
 

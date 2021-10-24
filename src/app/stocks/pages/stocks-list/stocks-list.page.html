@@ -4,7 +4,11 @@
 
 <div class="flex">
   <div class="flex flex-initial" *ngFor="let stock of stocks$ | async; trackBy: trackById">
-    <app-stock-list-item [stock]="stock"></app-stock-list-item>
+    <app-stock-list-item
+      class="p-3 m-2 border rounded w-64 hover:bg-gray-100 cursor-pointer"
+      [stock]="stock"
+      [routerLink]="'./' + stock.id"
+    ></app-stock-list-item>
   </div>
 </div>
 
@@ -16,5 +20,6 @@
     [opened]="openedModal"
     (loadStock)="loadStock($event)"
     (saveStock)="saveStock($event)"
+    (close)="closeModal()"
   ></app-stock-modal>
 </app-modal>

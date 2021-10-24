@@ -10,7 +10,8 @@
 
   <app-stock-form *ngIf="!!async.stock"
     [stock]="async.stock"
-    (onSave)="save($event)"
+    (save)="save($event)"
+    (cancel)="close.emit()"
   ></app-stock-form>
 
 </div>

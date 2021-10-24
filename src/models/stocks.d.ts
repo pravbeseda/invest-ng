@@ -1,5 +1,4 @@
-export interface StockItem {
-  id?: number;
+export interface NewStock {
   ticker: string,
   name: string,
   currency: string,
@@ -7,6 +6,10 @@ export interface StockItem {
   isin: string,
   type: string,
   lastPrice: number,
-  created_at?: number,
-  updates_at?: number,
+}
+
+export interface StockItem extends NewStock {
+  id: number;
+  created_at: number,
+  updates_at: number,
 }

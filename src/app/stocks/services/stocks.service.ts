@@ -9,8 +9,12 @@ export class StocksService {
 
   constructor(private apiStocksService: ApiStocksService) { }
 
-  getStock(ticker: string): Observable<StockItem> {
-    return this.apiStocksService.getStock(ticker);
+  getStock(id: number): Observable<StockItem> {
+    return this.apiStocksService.getStock(id);
+  }
+
+  getStockById(ticker: string): Observable<StockItem> {
+    return this.apiStocksService.getStockByTicker(ticker);
   }
 
   addStock(stock: StockItem): Observable<void> {
@@ -19,6 +23,10 @@ export class StocksService {
 
   getStocks(): Observable<Pageable<StockItem>> {
     return this.apiStocksService.getStocks();
+  }
+
+  updateStock(id: number, stock: StockItem): Observable<void> {
+    return this.apiStocksService.updateStock(id, stock);
   }
 
 }

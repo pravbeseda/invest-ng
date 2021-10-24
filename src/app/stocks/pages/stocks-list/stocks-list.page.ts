@@ -35,7 +35,7 @@ export class StocksListPage implements OnInit {
   }
 
   loadStock(intent: IntentData<string>) {
-    this.stocksService.getStock(intent.data).subscribe(r => {
+    this.stocksService.getStockById(intent.data).subscribe(r => {
       if (!!r) {
         intent.onSuccess(r);
       } else {
