@@ -21,8 +21,8 @@ export class ApiStocksService {
     return this.http.get<Pageable<StockItem>>(url);
   }
 
-  getStockByTicker(ticker: string): Observable<StockItem> {
-    const url = `/api/stock/ticker/${ticker}`;
+  searchStock(ticker: string, driver: string): Observable<StockItem> {
+    const url = `/api/stock/ticker/${ticker}/${driver}`;
     return this.http.get<StockItem>(url);
   }
 

@@ -13,8 +13,8 @@ export class StocksService {
     return this.apiStocksService.getStock(id);
   }
 
-  getStockById(ticker: string): Observable<StockItem> {
-    return this.apiStocksService.getStockByTicker(ticker);
+  searchStock(ticker: string, driver: string): Observable<StockItem> {
+    return this.apiStocksService.searchStock(ticker, driver);
   }
 
   addStock(stock: StockItem): Observable<void> {

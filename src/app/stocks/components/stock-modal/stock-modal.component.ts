@@ -1,8 +1,12 @@
-import {Component, ChangeDetectionStrategy, Output, EventEmitter, Input} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {IntentData} from '@models/common';
+import {Component, ChangeDetectionStrategy, Output, EventEmitter, Input, OnInit} from '@angular/core';
+import {FormBuilder, Validators} from "@angular/forms";
+import {Intent} from '@models/common';
 import {Subject} from "rxjs";
 import {StockItem} from "@models/stocks";
+import {stockDrivers} from '../../consts/stocks-consts';
+import {SearchStockInDto} from '../../models/SearchStockInDto';
+
+const defaultDriver = 'MCX';
 
 @Component({
   selector: 'app-stock-modal',
@@ -10,18 +14,18 @@ import {StockItem} from "@models/stocks";
   styleUrls: ['./stock-modal.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StockModalComponent {
+export class StockModalComponent implements OnInit {
   @Input()
   set opened(opened: boolean) {
     // При закрытии модалки очищаем форму
     if (!opened) {
-      this.ticker.reset();
+      this.form.reset({ driver: defaultDriver });
       this.stock$.next(null);
     }
   }
 
   @Output()
-  readonly loadStock = new EventEmitter<IntentData<string>>();
+  readonly loadStock = new EventEmitter<Intent<SearchStockInDto>>();
 
   @Output()
   readonly saveStock = new EventEmitter<StockItem>();
@@ -29,15 +33,30 @@ export class StockModalComponent {
   @Output()
   readonly close = new EventEmitter<void>();
 
-  readonly ticker = new FormControl(null, Validators.required);
   readonly stock$ = new Subject<StockItem | null>();
+  readonly stockDrivers = stockDrivers;
+
+  readonly form = this.fb.group({
+    ticker: [null, Validators.required],
+    driver: [null, Validators.required]
+  });
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.form.patchValue({
+      driver: defaultDriver
+    });
+  }
 
   search() {
-    if (this.ticker.invalid) {
+    if (this.form.invalid) {
       return;
     }
-    const intent: IntentData<string> = {
-      data: this.ticker.value?.toUpperCase(),
+    const data = this.form.value;
+    const intent: Intent<SearchStockInDto> = {
+      ticker: data.ticker?.toUpperCase(),
+      driver: data.driver,
       onSuccess: r => {
         this.stock$.next(r);
       }

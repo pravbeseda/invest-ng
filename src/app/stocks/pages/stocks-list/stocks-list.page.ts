@@ -1,9 +1,10 @@
 import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import { StocksService } from '../../services/stocks.service';
-import {IntentData} from "@models/common";
+import {Intent} from "@models/common";
 import {ToastrService} from "ngx-toastr";
 import {StockItem} from "@models/stocks";
 import {Subject} from "rxjs";
+import {SearchStockInDto} from '../../models/SearchStockInDto';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -34,8 +35,8 @@ export class StocksListPage implements OnInit {
     this.openedModal = false;
   }
 
-  loadStock(intent: IntentData<string>) {
-    this.stocksService.getStockById(intent.data).subscribe(r => {
+  loadStock(intent: Intent<SearchStockInDto>) {
+    this.stocksService.searchStock(intent.ticker, intent.driver).subscribe(r => {
       if (!!r) {
         intent.onSuccess(r);
       } else {

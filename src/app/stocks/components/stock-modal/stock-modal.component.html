@@ -1,11 +1,19 @@
 <div *ngIf="{ stock: stock$ | async } as async">
 
-  <div *ngIf="!async.stock" class="flex">
-    <app-text-input class="flex-1 mr-3">
-      <input id="ticker" type="text" [formControl]="ticker" (keyup.enter)="search()" placeholder=" " />
+  <div *ngIf="!async.stock" class="flex" [formGroup]="form">
+    <app-text-input class="flex-1">
+      <input id="ticker" type="text" formControlName="ticker" (keyup.enter)="search()" placeholder=" " />
       <label for="ticker">Тикер</label>
     </app-text-input>
-    <button class="btn btn-blue my-auto" [disabled]="ticker.invalid" (click)="search()">Искать</button>
+    <div class="flex-1 ml-3 my-auto">
+      <ng-select
+        [items]="stockDrivers"
+        bindLabel="label"
+        bindValue="value"
+        formControlName="driver"
+      ></ng-select>
+    </div>
+    <button class="btn btn-blue my-auto ml-5" [disabled]="form.invalid" (click)="search()">Искать!</button>
   </div>
 
   <app-stock-form *ngIf="!!async.stock"

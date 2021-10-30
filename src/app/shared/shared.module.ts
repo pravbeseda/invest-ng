@@ -5,8 +5,9 @@ import { ModalComponent } from './components/modal/modal.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import {NgSelectModule} from '@ng-select/ng-select';
 
-const SHARED_MODULES = [ CommonModule, NavbarModule, ReactiveFormsModule, HttpClientModule ];
+const SHARED_MODULES = [ CommonModule, NavbarModule, ReactiveFormsModule, HttpClientModule, NgSelectModule ];
 const SHARED_COMPONENTS = [ ModalComponent, TextInputComponent ];
 
 @NgModule({
