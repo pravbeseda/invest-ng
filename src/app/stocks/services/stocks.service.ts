@@ -29,4 +29,8 @@ export class StocksService {
     return this.apiStocksService.updateStock(id, stock);
   }
 
+  refreshPrice(id: number): Observable<number> {
+    return this.apiStocksService.refreshPrice(id);
+  }
+
 }
