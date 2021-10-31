@@ -2,8 +2,8 @@
 
 <button class="btn btn-green" (click)="openStockModal()">Добавить</button>
 
-<div class="flex">
-  <div class="flex flex-initial" *ngFor="let stock of stocks$ | async; trackBy: trackById">
+<div class="flex flex-wrap">
+  <div class="flex" *ngFor="let stock of stocks$ | async; trackBy: trackById">
     <app-stock-list-item
       class="p-3 m-2 border rounded w-64 hover:bg-gray-100 cursor-pointer"
       [stock]="stock"

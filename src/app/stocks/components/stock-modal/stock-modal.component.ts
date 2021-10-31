@@ -6,7 +6,7 @@ import {StockItem} from "@models/stocks";
 import {stockDrivers} from '../../consts/stocks-consts';
 import {SearchStockInDto} from '../../models/SearchStockInDto';
 
-const defaultDriver = 'MCX';
+const defaultDriver = 'TCS';
 
 @Component({
   selector: 'app-stock-modal',

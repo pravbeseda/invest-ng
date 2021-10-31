@@ -6,6 +6,8 @@ export interface NewStock {
   isin: string,
   type: string,
   lastPrice: number,
+  driver: string,
+  boardId: string,
 }
 
 export interface StockItem extends NewStock {

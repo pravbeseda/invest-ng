@@ -32,7 +32,9 @@ export class StockFormComponent {
     figi: null,
     isin: null,
     type: null,
-    lastPrice: null
+    lastPrice: null,
+    driver: null,
+    boardId: null,
   });
 
   constructor(private fb: FormBuilder) { }
