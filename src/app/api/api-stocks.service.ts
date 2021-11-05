@@ -22,7 +22,7 @@ export class ApiStocksService {
   }
 
   searchStock(ticker: string, driver: string): Observable<StockItem> {
-    const url = `/api/stocks/ticker/${ticker}/${driver}`;
+    const url = `/api/ticker/${ticker}/${driver}`;
     return this.http.get<StockItem>(url);
   }
 
