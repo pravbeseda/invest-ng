@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { StockItem } from '@models/stocks';
 import {Pageable} from "@models/common";
+import {StocksFilterInDto} from '@models/stocks-filter-in-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,9 @@ export class ApiStocksService {
     return this.http.get<StockItem>(url);
   }
 
-  getStocks(): Observable<Pageable<StockItem>> {
+  getStocks(body: StocksFilterInDto): Observable<Pageable<StockItem>> {
     const url = `/api/stocks`;
-    return this.http.get<Pageable<StockItem>>(url);
+    return this.http.get<Pageable<StockItem>>(url, { params: { ...body } } );
   }
 
   searchStock(ticker: string, driver: string): Observable<StockItem> {

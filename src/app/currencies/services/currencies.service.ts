@@ -5,29 +5,29 @@ import { ApiStocksService } from '@api';
 import {Pageable} from "@models/common";
 
 @Injectable()
-export class StocksService {
+export class CurrenciesService {
 
   constructor(private apiStocksService: ApiStocksService) { }
 
-  getStock(id: number): Observable<StockItem> {
+  getCurrency(id: number): Observable<StockItem> {
     return this.apiStocksService.getStock(id);
   }
 
-  searchStock(ticker: string, driver: string): Observable<StockItem> {
-    return this.apiStocksService.searchStock(ticker, driver);
-  }
-
-  addStock(stock: StockItem): Observable<void> {
-    return this.apiStocksService.addStock(stock);
-  }
-
-  getStocks(): Observable<Pageable<StockItem>> {
+  getCurrencies(): Observable<Pageable<StockItem>> {
     return this.apiStocksService.getStocks({
-      stockTypes: ['Stock', 'Etf']
+      stockTypes: ['currency']
     });
   }
 
-  updateStock(id: number, stock: StockItem): Observable<void> {
+  search(ticker: string, driver: string): Observable<StockItem> {
+    return this.apiStocksService.searchStock(ticker, driver);
+  }
+
+  add(stock: StockItem): Observable<void> {
+    return this.apiStocksService.addStock(stock);
+  }
+
+  update(id: number, stock: StockItem): Observable<void> {
     return this.apiStocksService.updateStock(id, stock);
   }
 

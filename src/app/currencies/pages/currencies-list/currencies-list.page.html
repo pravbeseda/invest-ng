@@ -1,0 +1,25 @@
+<h1>Валюты</h1>
+
+<button class="btn btn-green" (click)="openModal()">Добавить</button>
+
+<div class="flex flex-wrap">
+  <div class="flex" *ngFor="let currency of currencies$ | async; trackBy: trackById">
+    <app-currency-list-item
+      class="p-3 m-2 border rounded w-64 hover:bg-gray-100 cursor-pointer"
+      [currency]="currency"
+      [routerLink]="'./' + currency.id"
+    ></app-currency-list-item>
+  </div>
+</div>
+
+<app-modal
+  [opened]="isOpenedModal"
+  (close)="closeModal()"
+>
+  <app-currency-modal
+    [opened]="isOpenedModal"
+    (loadCurrency)="loadCurrency($event)"
+    (saveCurrency)="saveCurrency($event)"
+    (close)="closeModal()"
+  ></app-currency-modal>
+</app-modal>

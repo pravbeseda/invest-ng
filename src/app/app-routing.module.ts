@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./stocks/stocks.module').then(m => m.StocksModule)
   },
   {
+    path: 'currencies',
+    loadChildren: () => import('./currencies/currencies.module').then(m => m.CurrenciesModule)
+  },
+  {
     path: 'statistics',
     loadChildren: () => import('./statistics/statistics.module').then(m => m.StatisticsModule)
   },
