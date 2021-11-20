@@ -27,6 +27,11 @@ export class ApiStocksService {
     return this.http.get<StockItem>(url);
   }
 
+  searchCurrency(name: string, driver: string): Observable<StockItem> {
+    const url = `/api/currency/${name}/${driver}`;
+    return this.http.get<StockItem>(url);
+  }
+
   addStock(stock: StockItem): Observable<void> {
     const url = `/api/stocks`;
     return this.http.post<void>(url, stock);

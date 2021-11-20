@@ -1,5 +1,6 @@
 {
   "/api": {
+    "target1": "http://kalugaman.ru/invest/api",
     "target": "http://localhost:8000",
     "secure": false,
     "changeOrigin": true,

@@ -6,6 +6,7 @@ import { TextInputComponent } from './components/text-input/text-input.component
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import {NgSelectModule} from '@ng-select/ng-select';
+import {BindQueryParamsService} from './services/bind-query-params.service';
 
 const SHARED_MODULES = [ CommonModule, NavbarModule, ReactiveFormsModule, HttpClientModule, NgSelectModule ];
 const SHARED_COMPONENTS = [ ModalComponent, TextInputComponent ];
@@ -13,6 +14,7 @@ const SHARED_COMPONENTS = [ ModalComponent, TextInputComponent ];
 @NgModule({
   exports: [ ...SHARED_MODULES, ...SHARED_COMPONENTS ],
   imports: [ ...SHARED_MODULES ],
-  declarations: [ ...SHARED_COMPONENTS ]
+  declarations: [ ...SHARED_COMPONENTS ],
+  providers: [ BindQueryParamsService ]
 })
 export class SharedModule { }

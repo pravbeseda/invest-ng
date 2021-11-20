@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {CurrenciesListPage} from './pages/currencies-list/currencies-list.page';
 import {CurrenciesResolver} from './resolvers/currencies.resolver';
+import {CurrencyItemPage} from './pages/currency-edit/currency-item.page';
 
 const routes: Routes = [
   {
@@ -10,10 +11,10 @@ const routes: Routes = [
     resolve: { currencies: CurrenciesResolver },
     runGuardsAndResolvers: 'always',
   },
-  /*{
-    path: ':stockId',
-    component: StockItemComponent,
-  },*/
+  {
+    path: ':currencyId',
+    component: CurrencyItemPage,
+  },
   {
     path: '**',
     redirectTo: '',
@@ -22,6 +23,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [CurrenciesResolver]
 })
 export class CurrenciesRoutingModule { }

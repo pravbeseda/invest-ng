@@ -1,0 +1,8 @@
+<div class="pt-4 w-1/3">
+  <app-currency-form *ngIf="currency$ | async as currency"
+    [currency]="currency"
+    (save)="save($event)"
+    (cancel)="cancel()"
+  ></app-currency-form>
+  <button class="btn btn-blue" (click)="priceUpdate()">Обновить цену</button>
+</div>

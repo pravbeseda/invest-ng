@@ -18,7 +18,7 @@
     "@angular/localize": "^12.2.5",
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
-    "@angular/router": "~12.2.0",
+    "@angular/router": "12.2.5",
     "@ng-select/ng-select": "^7.3.0",
     "@ngneat/tailwind": "^7.0.3",
     "@types/lodash": "^4.14.172",

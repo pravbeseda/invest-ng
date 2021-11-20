@@ -5,6 +5,9 @@ import {Observable} from 'rxjs';
 import {Intent} from '@models/common';
 import {StockItem} from '@models/stocks';
 import {SearchCurrencyInDto} from '../../models/SearchCurrencyInDto';
+import {CurrencyService} from '../../services/currency.service';
+import {ToastrService} from 'ngx-toastr';
+import {BindQueryParamsService} from '../../../shared/services/bind-query-params.service';
 
 @Component({
   selector: 'app-currencies-list',
@@ -17,7 +20,12 @@ export class CurrenciesListPage implements OnInit {
   readonly trackById = (_: number, { id }: StockItem) => id;
   isOpenedModal = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private currencyService: CurrencyService,
+    private bindQueryParamsService: BindQueryParamsService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -31,20 +39,20 @@ export class CurrenciesListPage implements OnInit {
   }
 
   loadCurrency(intent: Intent<SearchCurrencyInDto>) {
-    /*this.stocksService.searchStock(intent.ticker, intent.driver).subscribe(r => {
+    this.currencyService.search(intent.name, intent.driver).subscribe(r => {
       if (!!r) {
         intent.onSuccess(r);
       } else {
         this.toastr.error('Ничего не найдено');
       }
-    });*/
+    });
   }
 
-  saveCurrency(stock: StockItem) {
-    /*this.stocksService.addStock(stock).subscribe(() => {
-      this.toastr.success('Бумага добавлена успешно');
-      this.getStocks();
+  saveCurrency(currency: StockItem) {
+    this.currencyService.add(currency).subscribe(() => {
+      this.bindQueryParamsService.updateResolver();
+      this.toastr.success(`Валюта "${currency.name}" добавлена успешно`);
       this.closeModal();
-    });*/
+    });
   }
 }

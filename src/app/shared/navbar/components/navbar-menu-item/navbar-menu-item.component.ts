@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-navbar-menu-item',
@@ -6,14 +6,6 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   styleUrls: ['./navbar-menu-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarMenuItemComponent implements OnInit {
-
-  @Input()
-  routerLink = '';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class NavbarMenuItemComponent {
 
 }
