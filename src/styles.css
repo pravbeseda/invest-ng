@@ -17,7 +17,10 @@ h1 {
 }
 
 .btn {
-  @apply bg-gray-200 hover:bg-gray-300 p-2 m-2;
+  @apply font-bold py-2 px-4 rounded bg-gray-200 hover:bg-gray-300;
+}
+.btn-blue {
+  @apply bg-blue-500 text-white hover:bg-blue-700;
 }
 
 .btn-gray {
@@ -26,10 +29,6 @@ h1 {
 
 .btn-green {
   @apply bg-green-200 hover:bg-green-300;
-}
-
-.btn-blue {
-  @apply bg-blue-200 hover:bg-blue-300;
 }
 
 .btn:disabled {
