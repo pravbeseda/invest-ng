@@ -18,9 +18,9 @@ export class HttpErrorsInterceptor {
     );
   }
 
-  private handle({ status, error = {}, message, url }: HttpErrorResponse, emitNotify = true): void {
+  private handle({ status, error = {}, message }: HttpErrorResponse, emitNotify = true): void {
     if (emitNotify) {
-      const msg = status === 404 ? 'Не найдено' : message;
+      const msg = status === 404 ? 'Не найдено' : error.message || message;
       this.createNotification(msg);
     }
     /*const isLoginPath = url && (url.includes('/api/authenticate'));
