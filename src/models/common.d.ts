@@ -8,3 +8,10 @@ export type Pageable<T> = {
   content: T[],
   totalCount: number;
 }
+
+export interface SortField {
+  property: string;
+  direction: SortDirections;
+}
+
+export type SortDirections = 'DESC' | 'ASC';

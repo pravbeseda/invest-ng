@@ -1,6 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {UserLoginService} from '../../services/user-login.service';
+import {AuthenticationService} from '../../../../../shared/services/authentication.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-login-form',
@@ -8,20 +10,20 @@ import {UserLoginService} from '../../services/user-login.service';
   styleUrls: ['./login-form.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginFormPage implements OnInit {
+export class LoginFormPage {
 
   readonly form = this.fb.group({
     email: [null, Validators.required],
     password: [null, Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private userLoginService: UserLoginService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private fb: FormBuilder, private userLoginService: AuthenticationService, private router: Router) { }
 
   login() {
-    this.userLoginService.login(this.form.value).subscribe();
+    this.userLoginService.login(this.form.value).subscribe(() => {
+      const { redirect } = window.history.state;
+      this.router.navigateByUrl(redirect || '/');
+    });
   }
 
 }

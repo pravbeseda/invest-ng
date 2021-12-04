@@ -5,6 +5,7 @@
     "baseUrl": "src",
     "paths": {
       "@api": ["app/api"],
+      "@shared": ["app/shared/*"],
       "@models/*": ["models/*"],
     },
     "outDir": "./dist/out-tsc",
