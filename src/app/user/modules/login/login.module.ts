@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { LoginFormPage } from './pages/login-form/login-form.page';
-import {UserLoginRoutingModule} from './user-login-routing.module';
+import {LoginRoutingModule} from './login-routing.module';
 import {SharedModule} from '../../../shared/shared.module';
 
 @NgModule({
@@ -9,7 +9,7 @@ import {SharedModule} from '../../../shared/shared.module';
   ],
   imports: [
     SharedModule,
-    UserLoginRoutingModule
+    LoginRoutingModule
   ],
 })
-export class UserLoginModule { }
+export class LoginModule { }
