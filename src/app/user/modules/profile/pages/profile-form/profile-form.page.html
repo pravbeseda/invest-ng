@@ -1,14 +1,25 @@
+<h1>Профиль пользователя</h1>
+
 <form [formGroup]="form">
 
-  <app-text-input class="mb-3">
-    <input id="username" type="text" formControlName="username" placeholder=" " />
-    <label for="username">Имя пользователя</label>
-  </app-text-input>
+  <div class="flex">
 
-  <app-text-input class="mb-3">
-    <input id="email" type="email" formControlName="email" placeholder=" " />
-    <label for="email">E-mail</label>
-  </app-text-input>
+    <div class="preview bg-gray-300">
+
+    </div>
+
+    <div class="ml-4">
+      <app-text-input>
+        <input id="username" type="text" formControlName="username" placeholder=" " />
+        <label for="username">Имя пользователя</label>
+      </app-text-input>
+
+      <app-text-input class="mt-3">
+        <input id="email" type="email" formControlName="email" placeholder=" " />
+        <label for="email">E-mail</label>
+      </app-text-input>
+    </div>
+  </div>
 
   <div class="mt-6">
     <button class="btn btn-gray" routerLink="/">Отмена</button>
