@@ -7,10 +7,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import {NgSelectModule} from '@ng-select/ng-select';
 import {BindQueryParamsService} from './services/bind-query-params.service';
-import {FileUploaderDirective} from './directives/file-uploader.directive';
 
 const SHARED_MODULES = [ CommonModule, NavbarModule, ReactiveFormsModule, HttpClientModule, NgSelectModule ];
-const SHARED_COMPONENTS = [ ModalComponent, TextInputComponent, FileUploaderDirective ];
+const SHARED_COMPONENTS = [ ModalComponent, TextInputComponent ];
 
 @NgModule({
   exports: [ ...SHARED_MODULES, ...SHARED_COMPONENTS ],
