@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {PortfolioServiceService} from '../../services/portfolio-service.service';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -7,19 +9,25 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioListPage implements OnInit {
-  isOpenedModal = false;
+  readonly isOpenedModal$ = new BehaviorSubject(false);
 
-  constructor() { }
+  constructor(private portfolioServiceService: PortfolioServiceService) { }
 
   ngOnInit(): void {
   }
 
+  savePortfolio(name: string) {
+    this.portfolioServiceService.addPortfolio(name).subscribe(() => {
+      this.closeModal();
+    });
+  }
+
   openModal() {
-    this.isOpenedModal = true;
+    this.isOpenedModal$.next(true);
   }
 
   closeModal() {
-    this.isOpenedModal = false;
+    this.isOpenedModal$.next(false);
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy, Input, OnInit} from '@angular/core';
+import {Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({
@@ -15,9 +15,12 @@ export class PortfolioModalComponent {
     }
   }
 
+  @Output()
+  private readonly save = new EventEmitter<string>();
+
   readonly nameControl = new FormControl(null, [Validators.required]);
 
-  save() {
-
+  saveHandler() {
+    this.save.emit(this.nameControl.value);
   }
 }

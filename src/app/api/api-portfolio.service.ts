@@ -11,6 +11,6 @@ export class ApiPortfolioService {
 
   addPortfolio(name: string): Observable<void> {
     const url = `/api/portfolio`;
-    return this.http.post<void>(url, name);
+    return this.http.post<void>(url, { name });
   }
 }

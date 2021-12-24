@@ -1,7 +1,7 @@
   <div>
     <app-text-input class="flex-1">
-      <input id="name" type="text" [formControl]="nameControl" (keyup.enter)="save()" placeholder=" " />
+      <input id="name" type="text" [formControl]="nameControl" (keyup.enter)="saveHandler()" placeholder=" " />
       <label for="name">Название</label>
     </app-text-input>
-    <button class="btn btn-blue mt-5" [disabled]="nameControl.invalid" (click)="save()">Сохранить</button>
+    <button class="btn btn-blue mt-5" [disabled]="nameControl.invalid" (click)="saveHandler()">Сохранить</button>
   </div>
