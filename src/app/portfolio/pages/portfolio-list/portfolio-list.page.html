@@ -1,16 +1,3 @@
 <h1>Портфели</h1>
 
 <button class="btn btn-green" (click)="openModal()">+ Новый портфель</button>
-
-<app-modal
-  *ngIf="{ isOpenedModal : isOpenedModal$ | async } as async"
-  [opened]="!!async.isOpenedModal"
-  modalClass="sm:w-1/3 sm:h-[250px]"
-  (close)="closeModal()"
->
-  <app-portfolio-modal
-    [opened]="!!async.isOpenedModal"
-    (save)="savePortfolio($event)"
-    (close)="closeModal()"
-  ></app-portfolio-modal>
-</app-modal>

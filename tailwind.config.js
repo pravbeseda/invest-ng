@@ -7,7 +7,7 @@ module.exports = {
     mode: 'jit',
     purge: {
       content: [
-        './src/**/*.{html,ts,css,scss,sass,less,styl}',
+        './src/**/*.{html,ts,css}',
       ]
     },
     darkMode: false, // or 'media' or 'class'
