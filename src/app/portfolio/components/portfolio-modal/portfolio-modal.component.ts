@@ -1,26 +1,18 @@
-import {Component, ChangeDetectionStrategy, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
+import {ModalRef} from '../../../shared/modules/modal/classes/modal-ref';
+import {UntilDestroy} from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-portfolio-modal',
   templateUrl: './portfolio-modal.component.html',
-  styleUrls: ['./portfolio-modal.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioModalComponent {
-  @Input()
-  set opened(opened: boolean) {
-    if (!opened) {
-      this.nameControl.reset();
-    }
-  }
-
-  @Output()
-  private readonly save = new EventEmitter<string>();
+  @Output() readonly save = new EventEmitter<string>();
 
   readonly nameControl = new FormControl(null, [Validators.required]);
 
-  saveHandler() {
-    this.save.emit(this.nameControl.value);
-  }
+  constructor(public ref: ModalRef) { }
 }

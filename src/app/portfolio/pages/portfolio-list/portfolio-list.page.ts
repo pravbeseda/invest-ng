@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {PortfolioServiceService} from '../../services/portfolio-service.service';
-import {BehaviorSubject} from 'rxjs';
 import {ModalService} from '../../../shared/modules/modal/services/modal.service';
 import {PortfolioModalComponent} from '../../components/portfolio-modal/portfolio-modal.component';
+import {untilDestroyed} from '@ngneat/until-destroy';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -10,26 +11,15 @@ import {PortfolioModalComponent} from '../../components/portfolio-modal/portfoli
   styleUrls: ['./portfolio-list.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PortfolioListPage implements OnInit {
-  readonly isOpenedModal$ = new BehaviorSubject(false);
-
+export class PortfolioListPage {
   constructor(private portfolioServiceService: PortfolioServiceService, private modal: ModalService) { }
 
-  ngOnInit(): void {
-  }
-
-  savePortfolio(name: string) {
-    this.portfolioServiceService.addPortfolio(name).subscribe(() => {
-      this.closeModal();
-    });
-  }
-
   openModal() {
-    this.modal.open(PortfolioModalComponent);
+    const modalRef = this.modal.open(PortfolioModalComponent);
+    const componentInstance: PortfolioModalComponent = modalRef.componentInstance;
+    componentInstance.save.pipe(
+      switchMap(name => this.portfolioServiceService.addPortfolio(name)),
+      untilDestroyed(componentInstance)
+    ).subscribe(() => modalRef.close());
   }
-
-  closeModal() {
-    this.isOpenedModal$.next(false);
-  }
-
 }

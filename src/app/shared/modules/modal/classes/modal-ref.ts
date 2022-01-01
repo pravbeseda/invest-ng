@@ -9,6 +9,7 @@ export interface OverlayCloseEvent<R> {
 // R = тип ответа, T = тип данных, переданных в модалку
 export class ModalRef<R = any, T = any> {
   afterClosed$ = new Subject<OverlayCloseEvent<R>>();
+  componentInstance: any;
 
   constructor(
     public overlay: OverlayRef,

@@ -16,20 +16,25 @@ export class ModalService {
     data?: T
   ): ModalRef<R> {
     this.overlayRef?.detach();
+    const positionStrategy = this.overlay
+      .position()
+      .global()
+      .centerHorizontally()
+      .centerVertically()
     const configs = new OverlayConfig({
       hasBackdrop: true,
+      positionStrategy,
       panelClass: ['modal'],
-      backdropClass: 'modal-background'
     });
     this.overlayRef = this.overlay.create(configs);
     const modalRef = new ModalRef<R, T>(this.overlayRef, component, data);
     const injector = Injector.create({
       parent: this.injector,
       providers: [
-        { provide: ModalRef, useValue: data }
+        { provide: ModalRef, useValue: modalRef }
       ]
     })
-    this.overlayRef.attach(new ComponentPortal(component, null, injector));
+    modalRef.componentInstance = this.overlayRef.attach(new ComponentPortal(component, null, injector)).instance;
 
     return modalRef;
   }
