@@ -3,7 +3,7 @@ import {ApiPortfolioService} from '@api';
 import {Observable} from 'rxjs';
 
 @Injectable()
-export class PortfolioServiceService {
+export class PortfolioService {
 
   constructor(private apiPortfolioService: ApiPortfolioService) { }
 

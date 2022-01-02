@@ -1,9 +1,10 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {PortfolioServiceService} from '../../services/portfolio-service.service';
-import {ModalService} from '../../../shared/modules/modal/services/modal.service';
+import {PortfolioService} from '../../services/portfolio.service';
+import {ModalService} from '@shared/modules/modal/services/modal.service';
 import {PortfolioModalComponent} from '../../components/portfolio-modal/portfolio-modal.component';
 import {untilDestroyed} from '@ngneat/until-destroy';
-import {switchMap} from 'rxjs/operators';
+import {catchError, switchMap} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -12,14 +13,14 @@ import {switchMap} from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioListPage {
-  constructor(private portfolioServiceService: PortfolioServiceService, private modal: ModalService) { }
+  constructor(private portfolioServiceService: PortfolioService, private modal: ModalService) { }
 
   openModal() {
     const modalRef = this.modal.open(PortfolioModalComponent);
     const componentInstance: PortfolioModalComponent = modalRef.componentInstance;
-    componentInstance.save.pipe(
-      switchMap(name => this.portfolioServiceService.addPortfolio(name)),
+    componentInstance.save$.pipe(
+      switchMap(name => this.portfolioServiceService.addPortfolio(name).pipe(catchError(err => of(null)))),
       untilDestroyed(componentInstance)
-    ).subscribe(() => modalRef.close());
+    ).subscribe(res => res !== null && modalRef.close());
   }
 }

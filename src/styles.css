@@ -25,11 +25,11 @@ h1 {
 }
 
 .btn-gray {
-  @apply bg-gray-200 hover:bg-gray-300;
+  @apply bg-gray-500 text-white hover:bg-gray-700;
 }
 
 .btn-green {
-  @apply bg-green-200 hover:bg-green-300;
+  @apply bg-green-600 text-white hover:bg-green-700;
 }
 
 .btn:disabled {

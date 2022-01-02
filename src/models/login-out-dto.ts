@@ -1,4 +1,4 @@
 export interface LoginOutDto {
-  status: string,
-  token: string
+  status: string;
+  token: string;
 }

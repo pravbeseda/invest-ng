@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PortfolioListPage } from "./pages/portfolio-list/portfolio-list.page";
-import {AuthGuard} from '../shared/services/auth.guard';
+import {AuthGuard} from '@shared/services/auth.guard';
 
 const routes: Routes = [
   {

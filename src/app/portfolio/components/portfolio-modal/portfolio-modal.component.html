@@ -4,12 +4,12 @@
     </div>
     <div class="bg-white p-4">
       <app-text-input class="flex-1">
-        <input id="name" type="text" [formControl]="nameControl" (keyup.enter)="save.emit(nameControl.value)" placeholder=" " />
+        <input id="name" type="text" [formControl]="nameControl" (keyup.enter)="save$.next(nameControl.value)" placeholder=" " />
         <label for="name">Название</label>
       </app-text-input>
       <div class="mt-8">
         <button class="btn btn-gray" (click)="ref.close()">Отмена</button>
-        <button class="btn btn-blue ml-5" [disabled]="nameControl.invalid" (click)="save.emit(nameControl.value)">Сохранить</button>
+        <button class="btn btn-blue ml-5" [disabled]="nameControl.invalid" (click)="save$.next(nameControl.value)">Сохранить</button>
       </div>
     </div>
   </div>

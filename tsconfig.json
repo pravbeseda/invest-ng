@@ -6,6 +6,7 @@
     "paths": {
       "@api": ["app/api"],
       "@shared": ["app/shared/*"],
+      "@shared/*": ["app/shared/*"],
       "@models/*": ["models/*"],
     },
     "outDir": "./dist/out-tsc",
