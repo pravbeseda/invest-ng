@@ -1,25 +1,26 @@
-<div *ngIf="{ stock: stock$ | async } as async">
-
-  <div *ngIf="!async.stock" class="flex" [formGroup]="form">
-    <app-text-input class="flex-1">
-      <input id="ticker" type="text" formControlName="ticker" (keyup.enter)="search()" placeholder=" " />
-      <label for="ticker">Тикер</label>
-    </app-text-input>
-    <div class="flex-1 ml-3 my-auto">
-      <ng-select
-        [items]="stockDrivers"
-        bindLabel="label"
-        bindValue="value"
-        formControlName="driver"
-      ></ng-select>
+<app-modal-wrapper
+  title="Новая бумага"
+>
+  <div *ngIf="{ stock: stock$ | async } as async">
+    <div *ngIf="!async.stock" class="flex" [formGroup]="form">
+      <app-text-input class="flex-1">
+        <input id="ticker" type="text" formControlName="ticker" (keyup.enter)="search()" placeholder=" " />
+        <label for="ticker">Тикер</label>
+      </app-text-input>
+      <div class="flex-1 ml-3 my-auto">
+        <ng-select
+          [items]="stockDrivers"
+          bindLabel="label"
+          bindValue="value"
+          formControlName="driver"
+        ></ng-select>
+      </div>
+      <button class="btn btn-blue my-auto ml-5" [disabled]="form.invalid" (click)="search()">Искать!</button>
     </div>
-    <button class="btn btn-blue my-auto ml-5" [disabled]="form.invalid" (click)="search()">Искать!</button>
+    <app-stock-form *ngIf="!!async.stock"
+      [stock]="async.stock"
+      (save)="saveStock$.next($event)"
+      (cancel)="cancel$.next()"
+    ></app-stock-form>
   </div>
-
-  <app-stock-form *ngIf="!!async.stock"
-    [stock]="async.stock"
-    (save)="save($event)"
-    (cancel)="close.emit()"
-  ></app-stock-form>
-
-</div>
+</app-modal-wrapper>

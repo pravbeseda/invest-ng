@@ -5,12 +5,14 @@ import {PortfolioModalComponent} from './components/portfolio-modal/portfolio-mo
 import {SharedModule} from '@shared/shared.module';
 import {PortfolioService} from './services/portfolio.service';
 import { PortfolioListItemComponent } from './components/portfolio-list-item/portfolio-list-item.component';
+import { PortfolioItemPage } from './pages/portfolio-item/portfolio-item.page';
 
 @NgModule({
   declarations: [
     PortfolioListPage,
     PortfolioModalComponent,
-    PortfolioListItemComponent
+    PortfolioListItemComponent,
+    PortfolioItemPage
   ],
   imports: [
     SharedModule,

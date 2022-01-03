@@ -1,25 +1,29 @@
-<div *ngIf="{ currency: currency$ | async } as async">
+<app-modal-wrapper
+  title="Новая валюта"
+>
+  <div *ngIf="{ currency: currency$ | async } as async">
 
-  <div *ngIf="!async.currency" class="flex" [formGroup]="form">
-    <app-text-input class="flex-1">
-      <input id="ticker" type="text" formControlName="name" (keyup.enter)="search()" placeholder=" " />
-      <label for="ticker">Название</label>
-    </app-text-input>
-    <div class="flex-1 ml-3 my-auto">
-      <ng-select
-        [items]="currencyDrivers"
-        bindLabel="label"
-        bindValue="value"
-        formControlName="driver"
-      ></ng-select>
+    <div *ngIf="!async.currency" class="flex" [formGroup]="form">
+      <app-text-input class="flex-1">
+        <input id="ticker" type="text" formControlName="name" (keyup.enter)="search()" placeholder=" " />
+        <label for="ticker">Название</label>
+      </app-text-input>
+      <div class="flex-1 ml-3 my-auto">
+        <ng-select
+          [items]="currencyDrivers"
+          bindLabel="label"
+          bindValue="value"
+          formControlName="driver"
+        ></ng-select>
+      </div>
+      <button class="btn btn-blue my-auto ml-5" [disabled]="form.invalid" (click)="search()">Искать!</button>
     </div>
-    <button class="btn btn-blue my-auto ml-5" [disabled]="form.invalid" (click)="search()">Искать!</button>
+
+    <app-currency-form *ngIf="!!async.currency"
+      [currency]="async.currency"
+      (save)="saveCurrency$.next($event)"
+      (cancel)="close$.next()"
+    ></app-currency-form>
+
   </div>
-
-  <app-currency-form *ngIf="!!async.currency"
-    [currency]="async.currency"
-    (save)="save($event)"
-    (cancel)="close.emit()"
-  ></app-currency-form>
-
-</div>
+</app-modal-wrapper>

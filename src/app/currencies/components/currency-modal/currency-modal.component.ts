@@ -1,13 +1,15 @@
-import {Component, ChangeDetectionStrategy, Output, EventEmitter, Input, OnInit} from '@angular/core';
+import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Intent} from '@models/common';
 import {Subject} from "rxjs";
 import {StockItem} from "@models/stocks";
 import {currencyDrivers} from '../../consts/currencies-consts';
 import {SearchCurrencyInDto} from '../../models/SearchCurrencyInDto';
+import {UntilDestroy} from '@ngneat/until-destroy';
 
 const defaultDriver = 'TCS';
 
+@UntilDestroy()
 @Component({
   selector: 'app-currency-modal',
   templateUrl: './currency-modal.component.html',
@@ -15,23 +17,14 @@ const defaultDriver = 'TCS';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CurrencyModalComponent implements OnInit {
-  @Input()
-  set opened(opened: boolean) {
-    // При закрытии модалки очищаем форму
-    if (!opened) {
-      this.form.reset({ driver: defaultDriver });
-      this.currency$.next(null);
-    }
-  }
+  // Output
+  readonly loadCurrency$ = new Subject<Intent<SearchCurrencyInDto>>();
 
-  @Output()
-  readonly loadCurrency = new EventEmitter<Intent<SearchCurrencyInDto>>();
+  // Output
+  readonly saveCurrency$ = new Subject<StockItem>();
 
-  @Output()
-  readonly saveCurrency = new EventEmitter<StockItem>();
-
-  @Output()
-  readonly close = new EventEmitter<void>();
+  // Output
+  readonly close$ = new Subject<void>();
 
   readonly currency$ = new Subject<StockItem | null>();
   readonly currencyDrivers = currencyDrivers;
@@ -61,11 +54,6 @@ export class CurrencyModalComponent implements OnInit {
         this.currency$.next(r);
       }
     }
-    this.loadCurrency.emit(intent);
+    this.loadCurrency$.next(intent);
   }
-
-  save(stock: StockItem) {
-    this.saveCurrency.emit(stock);
-  }
-
 }

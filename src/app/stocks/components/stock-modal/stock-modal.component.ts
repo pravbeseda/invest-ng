@@ -1,13 +1,15 @@
-import {Component, ChangeDetectionStrategy, Output, EventEmitter, Input, OnInit} from '@angular/core';
+import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Intent} from '@models/common';
 import {Subject} from "rxjs";
 import {StockItem} from "@models/stocks";
 import {stockDrivers} from '../../consts/stocks-consts';
 import {SearchStockInDto} from '../../models/SearchStockInDto';
+import {UntilDestroy} from '@ngneat/until-destroy';
 
 const defaultDriver = 'TCS';
 
+@UntilDestroy()
 @Component({
   selector: 'app-stock-modal',
   templateUrl: './stock-modal.component.html',
@@ -15,25 +17,14 @@ const defaultDriver = 'TCS';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StockModalComponent implements OnInit {
-  @Input()
-  set opened(opened: boolean) {
-    // При закрытии модалки очищаем форму
-    if (!opened) {
-      this.form.reset({ driver: defaultDriver });
-      this.stock$.next(null);
-    }
-  }
+  // Output
+  readonly loadStock$ = new Subject<Intent<SearchStockInDto>>();
+  // Output
+  readonly saveStock$ = new Subject<StockItem>();
+  // Output
+  readonly cancel$ = new Subject<void>();
 
-  @Output()
-  readonly loadStock = new EventEmitter<Intent<SearchStockInDto>>();
-
-  @Output()
-  readonly saveStock = new EventEmitter<StockItem>();
-
-  @Output()
-  readonly close = new EventEmitter<void>();
-
-  readonly stock$ = new Subject<StockItem | null>();
+  readonly stock$ = new Subject<StockItem>();
   readonly stockDrivers = stockDrivers;
 
   readonly form = this.fb.group({
@@ -61,11 +52,6 @@ export class StockModalComponent implements OnInit {
         this.stock$.next(r);
       }
     }
-    this.loadStock.emit(intent);
+    this.loadStock$.next(intent);
   }
-
-  save(stock: StockItem) {
-    this.saveStock.emit(stock);
-  }
-
 }

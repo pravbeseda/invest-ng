@@ -1,13 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {map, pluck} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {catchError, filter, map, pluck, switchMap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
 import {Intent} from '@models/common';
 import {StockItem} from '@models/stocks';
 import {SearchCurrencyInDto} from '../../models/SearchCurrencyInDto';
 import {CurrencyService} from '../../services/currency.service';
 import {ToastrService} from 'ngx-toastr';
 import {BindQueryParamsService} from '@shared/services/bind-query-params.service';
+import {ModalService} from '@shared/modules/modal/services/modal.service';
+import {CurrencyModalComponent} from '../../components/currency-modal/currency-modal.component';
+import {untilDestroyed} from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-currencies-list',
@@ -15,27 +18,34 @@ import {BindQueryParamsService} from '@shared/services/bind-query-params.service
   styleUrls: ['./currencies-list.page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CurrenciesListPage implements OnInit {
+export class CurrenciesListPage {
   readonly currencies$: Observable<StockItem[]> = this.route.data.pipe(pluck('currencies'), map(v => v.content));
   readonly trackById = (_: number, { id }: StockItem) => id;
-  isOpenedModal = false;
 
   constructor(
     private route: ActivatedRoute,
     private currencyService: CurrencyService,
     private bindQueryParamsService: BindQueryParamsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modal: ModalService,
   ) { }
 
-  ngOnInit(): void {
-  }
-
   openModal() {
-    this.isOpenedModal = true;
-  }
-
-  closeModal() {
-    this.isOpenedModal = false;
+    const modalRef = this.modal.open(CurrencyModalComponent);
+    const componentInstance: CurrencyModalComponent = modalRef.componentInstance;
+    componentInstance.loadCurrency$.pipe(untilDestroyed(componentInstance)).subscribe(intent => this.loadCurrency(intent));
+    componentInstance.saveCurrency$
+      .pipe(
+        switchMap(currency => this.currencyService.add(currency).pipe(catchError(() => of(null)))),
+        filter(r => r !== null),
+        untilDestroyed(componentInstance)
+      )
+      .subscribe(() => {
+        modalRef.close();
+        this.bindQueryParamsService.updateResolver();
+        this.toastr.success(`Валюта добавлена успешно`);
+      });
+    componentInstance.close$.pipe(untilDestroyed(componentInstance)).subscribe(() => modalRef.close());
   }
 
   loadCurrency(intent: Intent<SearchCurrencyInDto>) {
@@ -45,14 +55,6 @@ export class CurrenciesListPage implements OnInit {
       } else {
         this.toastr.error('Ничего не найдено');
       }
-    });
-  }
-
-  saveCurrency(currency: StockItem) {
-    this.currencyService.add(currency).subscribe(() => {
-      this.bindQueryParamsService.updateResolver();
-      this.toastr.success(`Валюта "${currency.name}" добавлена успешно`);
-      this.closeModal();
     });
   }
 }

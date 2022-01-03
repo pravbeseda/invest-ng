@@ -13,11 +13,16 @@ export class ApiPortfolioService {
 
   getPortfolios(): Observable<Pageable<Portfolio>> {
     const url = `/api/portfolios`;
-    return this.http.get<Pageable<Portfolio>>(url, undefined);
+    return this.http.get<Pageable<Portfolio>>(url);
+  }
+
+  getPortfolio(id: number): Observable<Portfolio> {
+    const url = `/api/portfolios/${id}`;
+    return this.http.get<Portfolio>(url);
   }
 
   addPortfolio(name: string): Observable<void> {
-    const url = `/api/portfolio`;
+    const url = `/api/portfolios`;
     return this.http.post<void>(url, { name });
   }
 }

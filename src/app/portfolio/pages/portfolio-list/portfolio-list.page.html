@@ -1,6 +1,6 @@
 <h1>Портфели</h1>
 
-<button class="m-2 btn btn-green" (click)="openModal()">+ Новый портфель</button>
+<button class="btn btn-green" (click)="openModal()">+ Новый портфель</button>
 
 <div class="flex flex-wrap">
   <div class="flex" *ngFor="let portfolio of portfolios$ | async; trackBy: trackById">

@@ -13,6 +13,10 @@ export class PortfolioService {
     return this.apiPortfolioService.getPortfolios();
   }
 
+  getPortfolio(id: number): Observable<Portfolio> {
+    return this.apiPortfolioService.getPortfolio(id);
+  }
+
   addPortfolio(name: string): Observable<void> {
     return this.apiPortfolioService.addPortfolio(name);
   }

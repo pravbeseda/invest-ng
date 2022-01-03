@@ -11,15 +11,3 @@
     ></app-stock-list-item>
   </div>
 </div>
-
-<app-modal
-  [opened]="openedModal"
-  (close)="closeModal()"
->
-  <app-stock-modal
-    [opened]="openedModal"
-    (loadStock)="loadStock($event)"
-    (saveStock)="saveStock($event)"
-    (close)="closeModal()"
-  ></app-stock-modal>
-</app-modal>

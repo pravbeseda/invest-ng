@@ -11,15 +11,3 @@
     ></app-currency-list-item>
   </div>
 </div>
-
-<app-modal
-  [opened]="isOpenedModal"
-  (close)="closeModal()"
->
-  <app-currency-modal
-    [opened]="isOpenedModal"
-    (loadCurrency)="loadCurrency($event)"
-    (saveCurrency)="saveCurrency($event)"
-    (close)="closeModal()"
-  ></app-currency-modal>
-</app-modal>
