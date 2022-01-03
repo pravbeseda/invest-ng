@@ -8,7 +8,9 @@ import { SortDirections } from '@models/common';
 export class BindQueryParamsService {
   private storedChanges: Record<string, any> = {};
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) {
+    router.onSameUrlNavigation = 'reload';
+  }
 
   getSearchParameter$(name: string | number): Observable<any> {
     return this.route.queryParams.pipe(map(queryParams => queryParams[name]));
@@ -59,10 +61,7 @@ export class BindQueryParamsService {
     });
   }
 
-  // Метод добавляет уникальное значение в queryParams,
-  // чтобы сработал резолвер
   updateResolver(): void {
-    this.setSearchParameter('t', Date.now());
     this.updateQueryParams();
   }
 

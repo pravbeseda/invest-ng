@@ -7,7 +7,7 @@ import {StockItem} from '@models/stocks';
 import {SearchCurrencyInDto} from '../../models/SearchCurrencyInDto';
 import {CurrencyService} from '../../services/currency.service';
 import {ToastrService} from 'ngx-toastr';
-import {BindQueryParamsService} from '../../../shared/services/bind-query-params.service';
+import {BindQueryParamsService} from '@shared/services/bind-query-params.service';
 
 @Component({
   selector: 'app-currencies-list',

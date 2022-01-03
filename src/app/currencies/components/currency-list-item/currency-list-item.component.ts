@@ -10,7 +10,7 @@ import {StockItem} from '@models/stocks';
 export class CurrencyListItemComponent implements OnInit {
 
   @Input()
-  currency: StockItem | undefined;
+  currency!: StockItem;
 
   constructor() { }
 

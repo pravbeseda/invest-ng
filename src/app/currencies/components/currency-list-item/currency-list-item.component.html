@@ -1,4 +1,4 @@
-<div class="flex" *ngIf="currency">
+<div class="flex">
   <div class="flex-1">{{ currency.name }}</div>
   <div class="ml-3">{{ currency.lastPrice | currency : currency.currency : 'symbol-narrow' : '' : 'ru' }}</div>
 </div>

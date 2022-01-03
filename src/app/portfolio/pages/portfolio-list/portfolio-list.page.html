@@ -1,3 +1,13 @@
 <h1>Портфели</h1>
 
-<button class="btn btn-green" (click)="openModal()">+ Новый портфель</button>
+<button class="m-2 btn btn-green" (click)="openModal()">+ Новый портфель</button>
+
+<div class="flex flex-wrap">
+  <div class="flex" *ngFor="let portfolio of portfolios$ | async; trackBy: trackById">
+    <app-portfolio-list-item
+      class="p-3 m-2 border rounded w-64 hover:bg-gray-100 cursor-pointer"
+      [portfolio]="portfolio"
+      [routerLink]="'./' + portfolio.id"
+    ></app-portfolio-list-item>
+  </div>
+</div>
