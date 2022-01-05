@@ -17,8 +17,9 @@ export class ApiStocksService {
     return this.http.get<StockItem>(url);
   }
 
-  getStocks(body: StocksFilterInDto): Observable<Pageable<StockItem>> {
+  getStocks(filter?: StocksFilterInDto): Observable<Pageable<StockItem>> {
     const url = `/api/stocks`;
+    const body = filter ?? { stockTypes: ['Stock', 'Etf']};
     return this.http.get<Pageable<StockItem>>(url, { params: { ...body } } );
   }
 
