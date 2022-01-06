@@ -21,19 +21,19 @@
         </app-text-input>
 
         <app-text-input class="flex-1 ml-3">
-          <input id="quantity" type="text" formControlName="quantity" placeholder=" " />
+          <input id="quantity" type="text" formControlName="quantity" placeholder=" " appNumberMask />
           <label for="quantity">Количество</label>
         </app-text-input>
       </div>
 
       <div class="flex">
         <app-text-input class="flex-1">
-          <input id="cost" type="text" formControlName="cost" placeholder=" " />
+          <input id="cost" type="text" formControlName="cost" placeholder=" " appCurrencyMask [currency]="selectedStock.currency" />
           <label for="cost">Стоимость</label>
         </app-text-input>
 
         <app-text-input class="flex-1 ml-3" *ngIf="selectedStock.currency !== 'RUB'">
-          <input id="costRubles" type="text" formControlName="costRubles" placeholder=" " />
+          <input id="costRubles" type="text" formControlName="costRubles" placeholder=" " appCurrencyMask currency="RUB" />
           <label for="costRubles">Стоимость в рублях</label>
         </app-text-input>
       </div>

@@ -21,7 +21,7 @@ registerLocaleData(localeRu);
     CoreModule,
     ToastrModule.forRoot(),
     NoopAnimationsModule,
-    SharedModule
+    SharedModule,
   ],
   bootstrap: [AppComponent]
 })

@@ -8,9 +8,11 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {BindQueryParamsService} from './services/bind-query-params.service';
 import {ModalModule} from './modules/modal/modal.module';
 import { ModalWrapperComponent } from './components/modal-wrapper/modal-wrapper.component';
+import { CurrencyMaskDirective } from './masks/currency-mask.directive';
+import {NumberMaskDirective} from '@shared/masks/number-mask.directive';
 
 const SHARED_MODULES = [ CommonModule, ModalModule, NavbarModule, ReactiveFormsModule, HttpClientModule, NgSelectModule ];
-const SHARED_COMPONENTS = [ TextInputComponent, ModalWrapperComponent ];
+const SHARED_COMPONENTS = [ TextInputComponent, ModalWrapperComponent, CurrencyMaskDirective, NumberMaskDirective ];
 
 @NgModule({
   exports: [ ...SHARED_MODULES, ...SHARED_COMPONENTS ],

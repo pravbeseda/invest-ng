@@ -19,8 +19,12 @@ export class PortfolioService {
     return this.apiPortfolioService.getPortfolio(id);
   }
 
-  addPortfolio(name: string): Observable<void> {
-    return this.apiPortfolioService.addPortfolio(name);
+  addPortfolio(portfolio: Partial<Portfolio>): Observable<void> {
+    return this.apiPortfolioService.addPortfolio(portfolio);
+  }
+
+  updatePortfolio(portfolio: Partial<Portfolio>): Observable<void> {
+    return this.apiPortfolioService.updatePortfolio(portfolio);
   }
 
   getPortfolioStocks(): Observable<StockItem[]> {

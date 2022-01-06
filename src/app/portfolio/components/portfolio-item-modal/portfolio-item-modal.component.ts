@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {StockItem} from '@models/stocks';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -15,7 +15,7 @@ export class PortfolioItemModalComponent implements OnInit {
   // Input
   stockItems$!: Observable<StockItem[]>;
 
-  stockCtrl = new FormControl();
+  readonly stockCtrl = new FormControl();
 
   readonly formDeal = this.fb.group({
     dealDate: null,
@@ -24,7 +24,7 @@ export class PortfolioItemModalComponent implements OnInit {
     costRubles: null,
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.stockCtrl?.valueChanges.pipe(untilDestroyed(this)).subscribe(id => this.loadStockInfo(id));
@@ -32,7 +32,7 @@ export class PortfolioItemModalComponent implements OnInit {
 
   loadStockInfo(id: string) {
     // Todo: загрузка бумаги портфеля по тикеру
-
+    this.cdRef.markForCheck();
 
   }
 

@@ -21,7 +21,7 @@ export class PortfolioListPage {
 
   constructor(
     private route: ActivatedRoute,
-    private portfolioServiceService: PortfolioService,
+    private portfolioService: PortfolioService,
     private modal: ModalService,
     private bindQueryParamsService: BindQueryParamsService
   ) { }
@@ -30,7 +30,7 @@ export class PortfolioListPage {
     const modalRef = this.modal.open(PortfolioModalComponent);
     const componentInstance: PortfolioModalComponent = modalRef.componentInstance;
     componentInstance.save$.pipe(
-      switchMap(name => this.portfolioServiceService.addPortfolio(name).pipe(catchError(err => of(null)))),
+      switchMap(portfolio => this.portfolioService.addPortfolio(portfolio).pipe(catchError(err => of(null)))),
       filter(res => res !== null),
       untilDestroyed(componentInstance)
     ).subscribe(res => {

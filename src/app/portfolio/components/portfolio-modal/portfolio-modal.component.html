@@ -1,12 +1,28 @@
 <app-modal-wrapper
   title="Новый портфель"
 >
-  <app-text-input class="flex-1">
-    <input id="name" type="text" [formControl]="nameControl" (keyup.enter)="save$.next(nameControl.value)" placeholder=" " />
-    <label for="name">Название</label>
-  </app-text-input>
-  <div class="mt-8">
+  <div [formGroup]="form">
+    <app-text-input>
+      <input id="name" type="text" formControlName="name" placeholder=" " />
+      <label for="name">Название</label>
+    </app-text-input>
+    <div class="mt-3 flex">
+      <app-text-input>
+        <input id="balanceRub" type="text" formControlName="balanceRub" placeholder=" " appCurrencyMask currency="RUB" />
+        <label for="balanceRub">Нал. рубли</label>
+      </app-text-input>
+      <app-text-input>
+        <input id="balanceUsd" type="text" formControlName="balanceUsd" placeholder=" " appCurrencyMask currency="USD" />
+        <label for="balanceUsd">Нал. доллары</label>
+      </app-text-input>
+      <app-text-input>
+        <input id="balanceEur" type="text" formControlName="balanceEur" placeholder=" " appCurrencyMask currency="EUR" />
+        <label for="balanceEur">Нал. евро</label>
+      </app-text-input>
+    </div>
+  </div>
+  <div class="mt-8 text-center">
     <button class="btn btn-gray" (click)="ref.close()">Отмена</button>
-    <button class="btn btn-blue ml-5" [disabled]="nameControl.invalid" (click)="save$.next(nameControl.value)">Сохранить</button>
+    <button class="btn btn-blue ml-5" [disabled]="form.invalid" (click)="save$.next(form.value)">Сохранить</button>
   </div>
 </app-modal-wrapper>

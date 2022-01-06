@@ -1,8 +1,9 @@
 import {Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ModalRef} from '@shared/modules/modal/classes/modal-ref';
 import {UntilDestroy} from '@ngneat/until-destroy';
 import {Subject} from 'rxjs';
+import {Portfolio} from '@models/portfolio';
 
 @UntilDestroy()
 @Component({
@@ -11,9 +12,21 @@ import {Subject} from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioModalComponent {
-  readonly save$ = new Subject<string>();
+  // Input
+  set portfolio(value: Partial<Portfolio>) {
+    this.form.patchValue(value);
+  }
 
-  readonly nameControl = new FormControl(null, [Validators.required]);
+  // Output
+  readonly save$ = new Subject<Partial<Portfolio>>();
 
-  constructor(public ref: ModalRef) { }
+  readonly form = this.fb.group({
+    id: null,
+    name: [null, [Validators.required]],
+    balanceRub: null,
+    balanceUsd: null,
+    balanceEur: null,
+  });
+
+  constructor(private fb: FormBuilder, public ref: ModalRef) { }
 }
