@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import {ApiPortfolioService, ApiStocksService} from '@api';
+import {ApiDealsService, ApiPortfolioService, ApiStocksService} from '@api';
 import {Observable} from 'rxjs';
-import {Pageable} from '@models/common';
-import {Portfolio} from '@models/portfolio';
-import {StockItem} from '@models/stocks';
+import {Deal, Pageable, Portfolio, StockItem} from '@models';
 import {map} from 'rxjs/operators';
 
 @Injectable()
 export class PortfolioService {
 
-  constructor(private apiPortfolioService: ApiPortfolioService, private apiStocksService: ApiStocksService) { }
+  constructor(
+    private apiPortfolioService: ApiPortfolioService,
+    private apiStocksService: ApiStocksService,
+    private apiDealsService: ApiDealsService,
+  ) { }
 
   getPortfolios(): Observable<Pageable<Portfolio>> {
     return this.apiPortfolioService.getPortfolios();
@@ -29,5 +31,9 @@ export class PortfolioService {
 
   getPortfolioStocks(): Observable<StockItem[]> {
     return this.apiStocksService.getStocks().pipe(map(r => r.content));
+  }
+
+  createDeal(deal: Partial<Deal>): Observable<void> {
+    return this.apiDealsService.createDeal(deal);
   }
 }

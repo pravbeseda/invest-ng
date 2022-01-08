@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {Pageable} from '@models/common';
-import {Portfolio} from '@models/portfolio';
+import {Pageable, Portfolio} from '@models';
 
 @Injectable({
   providedIn: 'root'

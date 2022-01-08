@@ -7,7 +7,7 @@
       "@api": ["app/api"],
       "@shared": ["app/shared/*"],
       "@shared/*": ["app/shared/*"],
-      "@models/*": ["models/*"],
+      "@models": ["models"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

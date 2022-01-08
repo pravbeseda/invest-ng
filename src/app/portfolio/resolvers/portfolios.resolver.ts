@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {Observable, of} from 'rxjs';
-import {Pageable} from '@models/common';
+import {Pageable, Portfolio} from '@models';
 import {catchError} from 'rxjs/operators';
 import {PortfolioService} from '../services/portfolio.service';
-import {Portfolio} from '@models/portfolio';
 
 const emptyAnswer$ = of({ content: [], totalCount: 0 });
 

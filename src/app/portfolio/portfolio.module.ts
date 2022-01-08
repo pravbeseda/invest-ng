@@ -6,7 +6,8 @@ import {SharedModule} from '@shared/shared.module';
 import {PortfolioService} from './services/portfolio.service';
 import { PortfolioListItemComponent } from './components/portfolio-list-item/portfolio-list-item.component';
 import { PortfolioItemPage } from './pages/portfolio-item/portfolio-item.page';
-import { PortfolioItemModalComponent } from './components/portfolio-item-modal/portfolio-item-modal.component';
+import { PortfolioDealModalComponent } from './components/portfolio-deal-modal/portfolio-deal-modal.component';
+import {CurrencyService} from '../currencies/services/currency.service';
 
 @NgModule({
   declarations: [
@@ -14,12 +15,12 @@ import { PortfolioItemModalComponent } from './components/portfolio-item-modal/p
     PortfolioModalComponent,
     PortfolioListItemComponent,
     PortfolioItemPage,
-    PortfolioItemModalComponent
+    PortfolioDealModalComponent
   ],
   imports: [
     SharedModule,
     PortfolioRoutingModule
   ],
-  providers: [ PortfolioService ]
+  providers: [ PortfolioService, CurrencyService ]
 })
 export class PortfolioModule { }

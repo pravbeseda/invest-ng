@@ -1,8 +1,7 @@
 import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import { StocksService } from '../../services/stocks.service';
-import {Intent} from "@models/common";
+import {Intent, StockItem} from '@models';
 import {ToastrService} from "ngx-toastr";
-import {StockItem} from "@models/stocks";
 import {of, Subject} from "rxjs";
 import {SearchStockInDto} from '../../models/SearchStockInDto';
 import {ModalService} from '@shared/modules/modal/services/modal.service';

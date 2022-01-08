@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
-import {StockItem} from '@models/stocks';
+import {StockItem} from '@models';
 
 @Component({
   selector: 'app-currency-list-item',

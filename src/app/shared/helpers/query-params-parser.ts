@@ -1,5 +1,5 @@
 import { Params } from '@angular/router';
-import {SortDirections, SortField} from '@models/common';
+import {SortDirections, SortField} from '@models';
 import {QueryParamsUtils} from './query-params-utils';
 
 export type ParsedSort = Record<string, SortDirections>;

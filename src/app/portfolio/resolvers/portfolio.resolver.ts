@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {Observable} from 'rxjs';
 import {PortfolioService} from '../services/portfolio.service';
-import {Portfolio} from '@models/portfolio';
+import {Portfolio} from '@models';
 
 @Injectable()
 export class PortfolioResolver implements Resolve<Portfolio> {

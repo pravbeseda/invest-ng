@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {LoginInDto} from '@models/login-in-dto';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {CurrentUser} from '@models/current-user';
 import {filter, switchMapTo, tap} from 'rxjs/operators';
 import {ApiAuthService, ApiUserService} from '@api';
+import {CurrentUser, LoginInDto} from '@models';
 
 @Injectable({
   providedIn: 'root'

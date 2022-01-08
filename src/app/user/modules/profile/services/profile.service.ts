@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CurrentUser} from '@models/current-user';
+import {CurrentUser} from '@models';
 import {Observable} from 'rxjs';
 import {ApiUserService} from '@api';
 

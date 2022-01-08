@@ -5,7 +5,7 @@ import {PortfolioModalComponent} from '../../components/portfolio-modal/portfoli
 import {untilDestroyed} from '@ngneat/until-destroy';
 import {catchError, filter, map, pluck, switchMap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
-import {Portfolio} from '@models/portfolio';
+import {Portfolio} from '@models';
 import {ActivatedRoute} from '@angular/router';
 import {BindQueryParamsService} from '@shared/services/bind-query-params.service';
 

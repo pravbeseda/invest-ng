@@ -1,5 +1,5 @@
 import {Component, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core';
-import { StockItem } from '@models/stocks';
+import { StockItem } from '@models';
 import { FormBuilder } from '@angular/forms';
 
 @Component({

@@ -1,5 +1,5 @@
 <div *ngIf="portfolio$ | async as portfolio">
   {{ portfolio.name }}
-  <button class="btn btn-green" (click)="openItemModal()">Сделка</button>
+  <button class="btn btn-green" (click)="openDealModal()">Сделка</button>
   <button class="btn btn-blue" (click)="openPortfolioModal(portfolio)">Редактировать</button>
 </div>

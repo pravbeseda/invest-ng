@@ -11,9 +11,9 @@ const prefixes: Record<string, string> = {
   selector: '[appCurrencyMask]'
 })
 export class CurrencyMaskDirective implements AfterViewInit, OnChanges, OnDestroy {
-  @Input()
-  currency = '';
+  @Input() currency = '';
   @Input() allowMinus = false;
+  @Input() digits?: number;
 
   constructor(private elRef: ElementRef, private zone: NgZone) {}
 
@@ -40,7 +40,8 @@ export class CurrencyMaskDirective implements AfterViewInit, OnChanges, OnDestro
         allowMinus: this.allowMinus,
         prefix: prefixes[this.currency] || '',
         unmaskAsNumber: true,
-        placeholder: '',
+        placeholder: ' ',
+        digits: this.digits,
         onBeforeMask: value => String(value).replace('.', ','),
       }).mask(this.elRef.nativeElement);
     });

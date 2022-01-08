@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
-import {Portfolio} from '@models/portfolio';
+import {Portfolio} from '@models';
 
 @Component({
   selector: 'app-portfolio-list-item',

@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { StockItem } from '@models/stocks';
-import {Pageable} from "@models/common";
-import {StocksFilterInDto} from '@models/stocks-filter-in-dto';
+import {Pageable, StockItem, StocksFilterInDto} from '@models';
 
 @Injectable({
   providedIn: 'root'

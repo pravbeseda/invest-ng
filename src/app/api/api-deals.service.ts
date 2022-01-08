@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {LoginInDto, LoginOutDto} from '@models';
+import {Deal} from '@models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiAuthService {
+export class ApiDealsService {
 
   constructor(private http: HttpClient) { }
 
-  login(body: LoginInDto): Observable<LoginOutDto> {
-    const url = `/api/common/login`;
-    return this.http.post<LoginOutDto>(url, body);
+  createDeal(deal: Partial<Deal>): Observable<void> {
+    const url = `/api/deals`;
+    return this.http.post<void>(url, deal);
   }
 }

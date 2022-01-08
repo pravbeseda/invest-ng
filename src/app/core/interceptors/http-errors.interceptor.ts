@@ -21,12 +21,21 @@ export class HttpErrorsInterceptor {
 
   private handle({ status, error = {}, message }: HttpErrorResponse, emitNotify = true): void {
     if (emitNotify) {
-      const msg = status === 404 ? 'Не найдено' : error.message || message;
-      this.createNotification(msg);
+      this.createNotification(this.errorMessage(status, error, message));
     }
     const isUnauthorized = status === 401;
     if (isUnauthorized) {
       this.router.navigate(['/user/login'], {state: { redirect: this.router.url }});
+    }
+  }
+
+  private errorMessage(status: number, error: {}, message: string): string {
+    if (status === 404) {
+      return 'Не найдено';
+    } else if (error.hasOwnProperty('exception')) {
+      return message || 'Ошибка!';
+    } else {
+      return Object.values(error).join(' ') || message;
     }
   }
 

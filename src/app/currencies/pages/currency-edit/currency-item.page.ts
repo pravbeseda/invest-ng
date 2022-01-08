@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BehaviorSubject, Subject} from 'rxjs';
-import {StockItem} from '@models/stocks';
+import {BehaviorSubject} from 'rxjs';
+import {StockItem} from '@models';
 import {ToastrService} from 'ngx-toastr';
 import {CurrencyService} from '../../services/currency.service';
 

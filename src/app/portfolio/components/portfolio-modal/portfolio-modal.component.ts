@@ -1,9 +1,9 @@
-import {Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {FormBuilder, Validators} from "@angular/forms";
 import {ModalRef} from '@shared/modules/modal/classes/modal-ref';
 import {UntilDestroy} from '@ngneat/until-destroy';
 import {Subject} from 'rxjs';
-import {Portfolio} from '@models/portfolio';
+import {Portfolio} from '@models';
 
 @UntilDestroy()
 @Component({

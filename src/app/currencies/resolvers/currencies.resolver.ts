@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {Observable, of} from 'rxjs';
-import {StockItem} from '@models/stocks';
+import {Pageable, StockItem} from '@models';
 import {CurrencyService} from '../services/currency.service';
-import {Pageable} from '@models/common';
 import {catchError} from 'rxjs/operators';
 
 const emptyAnswer$ = of({ content: [], totalCount: 0 });

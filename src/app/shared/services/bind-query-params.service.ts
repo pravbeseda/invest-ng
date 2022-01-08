@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { SortDirections } from '@models/common';
+import { SortDirections } from '@models';
 
 @Injectable()
 export class BindQueryParamsService {

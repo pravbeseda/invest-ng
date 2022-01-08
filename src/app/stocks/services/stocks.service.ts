@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { StockItem } from '@models/stocks';
+import { Pageable, StockItem } from '@models';
 import { ApiStocksService } from '@api';
-import {Pageable} from "@models/common";
 
 @Injectable()
 export class StocksService {

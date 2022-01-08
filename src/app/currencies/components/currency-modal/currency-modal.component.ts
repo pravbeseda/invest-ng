@@ -1,8 +1,7 @@
 import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {Intent} from '@models/common';
+import {StockItem, Intent} from '@models';
 import {Subject} from "rxjs";
-import {StockItem} from "@models/stocks";
 import {currencyDrivers} from '../../consts/currencies-consts';
 import {SearchCurrencyInDto} from '../../models/SearchCurrencyInDto';
 import {UntilDestroy} from '@ngneat/until-destroy';

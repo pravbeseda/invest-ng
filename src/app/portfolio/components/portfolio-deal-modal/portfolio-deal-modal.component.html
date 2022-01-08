@@ -11,13 +11,13 @@
     ></ng-select>
   </div>
 
-  <div *ngIf="stockCtrl.value as selectedStock" class="mt-3" [formGroup]="formDeal">
+  <div *ngIf="stockCtrl.value as selectedStock" class="mt-3" [formGroup]="form">
     <div class="m-2">
 
       <div class="flex">
         <app-text-input class="flex-1">
-          <input id="dealDate" type="date" formControlName="dealDate" placeholder=" " />
-          <label for="dealDate">Дата сделки</label>
+          <input id="datetime" type="date" formControlName="datetime" placeholder=" " />
+          <label for="datetime">Дата сделки</label>
         </app-text-input>
 
         <app-text-input class="flex-1 ml-3">
@@ -28,20 +28,20 @@
 
       <div class="flex">
         <app-text-input class="flex-1">
-          <input id="cost" type="text" formControlName="cost" placeholder=" " appCurrencyMask [currency]="selectedStock.currency" />
+          <input id="cost" type="text" formControlName="cost" placeholder=" " appCurrencyMask [currency]="selectedStock.currency" [digits]="2" />
           <label for="cost">Стоимость</label>
         </app-text-input>
 
         <app-text-input class="flex-1 ml-3" *ngIf="selectedStock.currency !== 'RUB'">
-          <input id="costRubles" type="text" formControlName="costRubles" placeholder=" " appCurrencyMask currency="RUB" />
+          <input id="costRubles" type="text" formControlName="costRub" placeholder=" " appCurrencyMask currency="RUB" [digits]="2" />
           <label for="costRubles">Стоимость в рублях</label>
         </app-text-input>
       </div>
 
     </div>
     <div class="flex justify-between mt-5">
-      <button class="btn btn-red">Продать</button>
-      <button class="btn btn-green">Купить</button>
+      <button class="btn btn-red" [disabled]="true">Продать</button>
+      <button class="btn btn-green" [disabled]="form.invalid" (click)="makeDeal()" >Купить</button>
     </div>
   </div>
 </app-modal-wrapper>
