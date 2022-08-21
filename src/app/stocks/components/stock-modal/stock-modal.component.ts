@@ -1,5 +1,5 @@
 import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {UntypedFormBuilder, Validators} from "@angular/forms";
 import {Intent, StockItem} from '@models';
 import {Subject} from "rxjs";
 import {stockDrivers} from '../../consts/stocks-consts';
@@ -31,7 +31,7 @@ export class StockModalComponent implements OnInit {
     driver: [null, Validators.required]
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit() {
     this.form.patchValue({

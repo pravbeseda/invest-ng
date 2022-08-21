@@ -1,5 +1,5 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {UntypedFormBuilder, Validators} from "@angular/forms";
 import {ModalRef} from '@shared/modules/modal/classes/modal-ref';
 import {UntilDestroy} from '@ngneat/until-destroy';
 import {Subject} from 'rxjs';
@@ -28,5 +28,5 @@ export class PortfolioModalComponent {
     balanceEur: null,
   });
 
-  constructor(private fb: FormBuilder, public ref: ModalRef) { }
+  constructor(private fb: UntypedFormBuilder, public ref: ModalRef) { }
 }

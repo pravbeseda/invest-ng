@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {UntypedFormBuilder, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../../../shared/services/authentication.service';
 import {Router} from '@angular/router';
 
@@ -17,7 +17,7 @@ export class LoginFormPage {
     password: [null, Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private userLoginService: AuthenticationService, private router: Router) { }
+  constructor(private fb: UntypedFormBuilder, private userLoginService: AuthenticationService, private router: Router) { }
 
   login() {
     this.userLoginService.login(this.form.value).subscribe(() => {

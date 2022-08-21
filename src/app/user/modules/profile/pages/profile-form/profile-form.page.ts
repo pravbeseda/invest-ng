@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {UntypedFormBuilder} from '@angular/forms';
 import {AuthenticationService} from '../../../../../shared/services/authentication.service';
 import {ProfileService} from '../../services/profile.service';
 import {ToastrService} from 'ngx-toastr';
@@ -19,7 +19,7 @@ export class ProfileFormPage implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private authenticationService: AuthenticationService,
     private profileService: ProfileService,
     private toastr: ToastrService,

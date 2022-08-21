@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 import {Deal, StockItem} from '@models';
 import {Observable, Subject} from 'rxjs';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
@@ -22,7 +22,7 @@ export class PortfolioDealModalComponent implements OnInit {
 
   currencies!: StockItem[];
 
-  readonly stockCtrl = new FormControl();
+  readonly stockCtrl = new UntypedFormControl();
   readonly form = this.fb.group({
     datetime: null,
     quantity: null,
@@ -30,7 +30,7 @@ export class PortfolioDealModalComponent implements OnInit {
     costRub: null,
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.currencies$.pipe(untilDestroyed(this)).subscribe(currencies => this.currencies = currencies);

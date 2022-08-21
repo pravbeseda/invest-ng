@@ -1,6 +1,6 @@
 import {Component, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core';
 import { StockItem } from '@models';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-stock-form',
@@ -37,5 +37,5 @@ export class StockFormComponent {
     boardId: null,
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: UntypedFormBuilder) { }
 }

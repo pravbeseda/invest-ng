@@ -1,5 +1,5 @@
 import {Component, ChangeDetectionStrategy, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {UntypedFormBuilder, Validators} from "@angular/forms";
 import {StockItem, Intent} from '@models';
 import {Subject} from "rxjs";
 import {currencyDrivers} from '../../consts/currencies-consts';
@@ -33,7 +33,7 @@ export class CurrencyModalComponent implements OnInit {
     driver: [null, Validators.required]
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit() {
     this.form.patchValue({
