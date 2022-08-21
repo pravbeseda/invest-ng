@@ -10,7 +10,7 @@ export class HttpAuthInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authenticationService.getToken();
-    const isApiSecuredUrl = request.url.startsWith('/api') && !request.url.startsWith('/api/common');
+    const isApiSecuredUrl = request.url.includes('/api/') && !request.url.includes('/api/common');
     if (!!token && isApiSecuredUrl) {
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${token}` }
